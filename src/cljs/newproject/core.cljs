@@ -4,6 +4,7 @@
    [reagent.session :as session]
    [newproject.stateless-samples :as stateless-samples :refer [stateless-samples-page]]
    [newproject.statefull-samples :as statefull-samples :refer [statefull-samples-page]]
+   [newproject.bmi-calculator :as bmi-calculator :refer [bmi-calculator-page]]
    [newproject.about :as about :refer [about-page]]
    [reitit.frontend :as reitit]
    [clerk.core :as clerk]
@@ -17,6 +18,7 @@
     [["/" :index]
     ["/stateless-samples" :stateless-samples]
     ["/statefull-samples" :statefull-samples]
+    ["/bmi-calculator" :bmi-calculator]
     ["/about" :about]]))
 
 (defn path-for [route & [params]]
@@ -36,6 +38,7 @@
       [:ul
         [:li [:a {:href (path-for :stateless-samples)} "Stateless Samples"]]
         [:li [:a {:href (path-for :statefull-samples)} "Statefull Samples"]]
+        [:li [:a {:href (path-for :bmi-calculator)} "BMI Calculator"]]
         [:li [:a {:href "/broken/link"} "Broken link"]]
         [:li [:a {:href "/about"} "About"]]]]))
 
@@ -47,6 +50,7 @@
     :index #'home-page
     :stateless-samples #'stateless-samples-page
     :statefull-samples #'statefull-samples-page
+    :bmi-calculator #'bmi-calculator-page
     :about #'about-page))
 
 ;; -------------------------
@@ -61,6 +65,7 @@
             [:a {:href (path-for :index)} "Home"] " | "
             [:a {:href (path-for :stateless-samples)} "Stateless Samples"] " | "
             [:a {:href (path-for :statefull-samples)} "Statefull Samples"] " | "
+            [:a {:href (path-for :bmi-calculator)} "BMI Calculator"] " | "
             [:a {:href (path-for :about)} "About"]]]
           [page]
           [:footer
