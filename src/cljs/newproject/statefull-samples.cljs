@@ -36,6 +36,25 @@
       [:div {:style {:padding "1rem" :margin "0.1rem" :background-color "#e8e8e8"}} [:strong "Sample 2"]
         [:p "Seconds Elapsed: " @seconds-elapsed]])))
 
+;; --------------------
+;; Sample 3
+
+(defn atom-input [value]
+  [:input {:type "text"
+   :value @value
+   :on-change #(reset! value (-> % .-target .-value))}])
+
+(defn shared-state []
+  (let [val (reagent/atom "foo")]
+    (fn []
+      [:div
+        [:p "The value is now: " @val]
+        [:p "Change it here: " [atom-input val]]])))
+
+(defn sample-3 []
+  [:div {:style {:padding "1rem" :margin "0.1rem" :background-color "#e8e8e8"}} [:strong "Sample 3"]
+    [shared-state]])
+
 ;; ---------------------
 ;; Sample Page rendering
 
@@ -48,4 +67,6 @@
            [counting-component]]
        [:li
            [timer-component]]
+       [:li
+           [sample-3]]
     [:a {:href (path-for :index)} "Back"]]]))
