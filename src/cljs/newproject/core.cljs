@@ -5,6 +5,7 @@
    [newproject.stateless-samples :as stateless-samples :refer [stateless-samples-page]]
    [newproject.statefull-samples :as statefull-samples :refer [statefull-samples-page]]
    [newproject.bmi-calculator :as bmi-calculator :refer [bmi-calculator-page]]
+   [newproject.to-do-list :as to-do-list :refer [to-do-list-page]]
    [newproject.about :as about :refer [about-page]]
    [reitit.frontend :as reitit]
    [clerk.core :as clerk]
@@ -19,6 +20,7 @@
     ["/stateless-samples" :stateless-samples]
     ["/statefull-samples" :statefull-samples]
     ["/bmi-calculator" :bmi-calculator]
+    ["/to-do-list" :to-do-list]
     ["/about" :about]]))
 
 (defn path-for [route & [params]]
@@ -34,13 +36,15 @@
   (fn []
     [:span.main
       [:h1 {:style {:font-size "1.5rem"}} "Reagent: Minimalistic React for ClojureScript"]
-      [:p "That is a project for study porpuses"]
+      [:p "That is a project for study porpuses."]
+      [:p "Check out how many cool things we can do with Clojure easily :)"]
       [:ul
         [:li [:a {:href (path-for :stateless-samples)} "Stateless Samples"]]
         [:li [:a {:href (path-for :statefull-samples)} "Statefull Samples"]]
         [:li [:a {:href (path-for :bmi-calculator)} "BMI Calculator"]]
+        [:li [:a {:href (path-for :to-do-list)} "To Do List"]]
         [:li [:a {:href "/broken/link"} "Broken link"]]
-        [:li [:a {:href "/about"} "About"]]]]))
+        [:li [:a {:href (path-for :about)} "About"]]]]))
 
 ;; ------------------------
 ;; Translate routes -> page components
@@ -51,6 +55,7 @@
     :stateless-samples #'stateless-samples-page
     :statefull-samples #'statefull-samples-page
     :bmi-calculator #'bmi-calculator-page
+    :to-do-list #'to-do-list-page
     :about #'about-page))
 
 ;; -------------------------
@@ -66,6 +71,7 @@
             [:a {:href (path-for :stateless-samples)} "Stateless Samples"] " | "
             [:a {:href (path-for :statefull-samples)} "Statefull Samples"] " | "
             [:a {:href (path-for :bmi-calculator)} "BMI Calculator"] " | "
+            [:a {:href (path-for :to-do-list)} "To Do List"] " | "
             [:a {:href (path-for :about)} "About"]]]
           [page]
           [:footer
